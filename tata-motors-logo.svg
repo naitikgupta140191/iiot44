@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 200" fill="none">
+  <!-- Blue Oval -->
+  <ellipse cx="110" cy="78" rx="88" ry="65" stroke="#1a6cc1" stroke-width="7" fill="none"/>
+  
+  <!-- Vertical bar of T -->
+  <rect x="101" y="50" width="18" height="75" rx="2" fill="#1a6cc1"/>
+  
+  <!-- Horizontal bar of T -->
+  <rect x="62" y="40" width="96" height="14" rx="2" fill="#1a6cc1"/>
+  
+  <!-- Upward arc/swoosh from center of T-bar -->
+  <path d="M78 40 Q110 12 142 40" stroke="#1a6cc1" stroke-width="7" fill="none" stroke-linecap="round"/>
+  
+  <!-- TATA text -->
+  <text x="110" y="172" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="900" fill="#1a6cc1" letter-spacing="5">TATA</text>
+  
+  <!-- MOTORS text -->
+  <text x="110" y="195" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" fill="#1a6cc1" letter-spacing="4">MOTORS</text>
+</svg>
