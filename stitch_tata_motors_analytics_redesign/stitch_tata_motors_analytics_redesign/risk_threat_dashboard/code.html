@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tata Motors - Threat Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#f7f9fb",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#54647a",
+                        "on-tertiary-fixed-variant": "#773300",
+                        "inverse-on-surface": "#eff1f3",
+                        "background": "#f7f9fb",
+                        "surface-tint": "#1b5faa",
+                        "on-primary-fixed": "#001b3b",
+                        "primary-fixed-dim": "#a7c8ff",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "tertiary-fixed": "#ffdbca",
+                        "tertiary-container": "#8a3c00",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#727782",
+                        "surface-container": "#eceef0",
+                        "on-background": "#191c1e",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-container-high": "#e6e8ea",
+                        "primary-fixed": "#d5e3ff",
+                        "primary": "#003c75",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#00539e",
+                        "secondary-container": "#d0e1fb",
+                        "outline-variant": "#c2c6d3",
+                        "secondary": "#505f76",
+                        "inverse-surface": "#2d3133",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary-fixed-dim": "#ffb68e",
+                        "on-primary-fixed-variant": "#004788",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-surface-variant": "#424751",
+                        "surface": "#f7f9fb",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-tertiary-container": "#ffb790",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#a7c8ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#d8dadc",
+                        "tertiary": "#662a00",
+                        "on-primary-container": "#a8c9ff",
+                        "on-tertiary-fixed": "#331200",
+                        "on-surface": "#191c1e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin": "32px",
+                        "lg": "32px",
+                        "xs": "8px",
+                        "sidebar_width": "260px",
+                        "gutter": "24px",
+                        "sm": "16px",
+                        "md": "24px",
+                        "base": "4px",
+                        "xl": "48px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "data-point": ["Inter"],
+                        "headline-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "data-point": ["20px", { "lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-sm": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .custom-shadow { box-shadow: 0px 4px 20px rgba(0,0,0,0.05); }
+        .glass-panel { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.5); }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased min-h-screen">
+<aside class="bg-white dark:bg-slate-900 fixed left-0 top-0 h-full w-[260px] border-r border-r border-slate-100 dark:border-slate-800 shadow-sm z-50">
+<div class="flex flex-col h-full py-6">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold">TM</div>
+<div>
+<h1 class="text-xl font-bold text-blue-800 dark:text-blue-300 tracking-tight">Tata Intelligence</h1>
+<p class="font-inter text-sm font-medium text-slate-500">Sales &amp; Strategy</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-blue-600 transition-colors duration-200 ease-in-out font-inter text-sm font-medium" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0, 'wght' 300;">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-blue-600 transition-colors duration-200 ease-in-out font-inter text-sm font-medium" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0, 'wght' 300;">analytics</span>
+                    Analytics
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-blue-600 transition-colors duration-200 ease-in-out font-inter text-sm font-medium" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0, 'wght' 300;">group</span>
+                    Customers
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-blue-600 transition-colors duration-200 ease-in-out font-inter text-sm font-medium" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0, 'wght' 300;">directions_car</span>
+                    Models
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-blue-600 transition-colors duration-200 ease-in-out font-inter text-sm font-medium" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0, 'wght' 300;">trending_up</span>
+                    Forecast
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-blue-600 transition-colors duration-200 ease-in-out font-inter text-sm font-medium" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0, 'wght' 300;">public</span>
+                    Markets
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-blue-600 transition-colors duration-200 ease-in-out font-inter text-sm font-medium" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0, 'wght' 300;">precision_manufacturing</span>
+                    Simulator
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 border-l-4 border-blue-700 font-semibold font-inter text-sm font-medium transition-colors duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 400;">report_problem</span>
+                    Risks
+                </a>
+</nav>
+</div>
+</aside>
+<div class="ml-sidebar_width min-h-screen flex flex-col">
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md fixed top-0 right-0 w-[calc(100%-260px)] h-16 border-b z-40 border-b border-slate-100 dark:border-slate-800 shadow-none">
+<div class="flex justify-between items-center px-8 h-full">
+<div class="flex items-center gap-4">
+<div class="relative flex items-center focus-within:ring-2 focus-within:ring-blue-500 rounded-lg bg-surface-container-low px-3 py-1.5 border border-outline-variant">
+<span class="material-symbols-outlined text-outline mr-2" style="font-variation-settings: 'FILL' 0, 'wght' 300;">search</span>
+<input class="bg-transparent border-none outline-none font-inter text-sm text-slate-900 dark:text-white placeholder:text-outline w-64 focus:ring-0 p-0" placeholder="Search signals..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-lg font-black text-slate-900 dark:text-white font-inter text-sm mr-4">Sales Intelligence</span>
+<button class="p-2 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0, 'wght' 300;">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0, 'wght' 300;">settings</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0, 'wght' 300;">help_outline</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-variant border border-outline-variant overflow-hidden ml-2 cursor-pointer">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="professional corporate headshot of a person in business attire against a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn78A_NomnqYCR6pOOe2xB9BscfeyqrJ912fd7T6KVcbkFmnb8BOgip6b5MiWwwyqjm5le1Ik_6oTsdW8ZdFWUkW7qxLBYg0RXjy2-I91CVbrMmMILBZbhc0qZG7E_cUIL1ehhaFX6m3Eu2g-evJJtGZfPWeHTHdREqlEMQMcou8EBSdMmpeVhxH3d1c1lGN8R1vmtPHKAdymLI--xvhVa1X8oGg0cAAt__U-JEhCdIJ6RGZgLuTmRoKrXTVpzcVxpw6kbe02Pj8Pr"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 pt-24 px-margin pb-margin">
+<div class="mb-lg">
+<h2 class="font-display-lg text-display-lg text-on-surface mb-2">Threat Intelligence &amp; Anomaly Detection</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">Real-time monitoring of systemic risks, market deviations, and predictive model health across the global sales network.</p>
+</div>
+<div class="grid grid-cols-12 gap-gutter mb-lg">
+<div class="col-span-12 md:col-span-4 bg-surface-container-lowest rounded-xl p-md custom-shadow border border-surface-container-high flex items-center justify-between group hover:-translate-y-1 transition-transform">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Critical Anomalies</p>
+<p class="font-display-lg text-display-lg text-error">4</p>
+</div>
+<div class="w-12 h-12 rounded-full bg-error-container text-on-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 bg-surface-container-lowest rounded-xl p-md custom-shadow border border-surface-container-high flex items-center justify-between group hover:-translate-y-1 transition-transform">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Elevated Risks</p>
+<p class="font-display-lg text-display-lg text-tertiary">12</p>
+</div>
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">trending_down</span>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 bg-surface-container-lowest rounded-xl p-md custom-shadow border border-surface-container-high flex items-center justify-between group hover:-translate-y-1 transition-transform">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Monitored Signals</p>
+<p class="font-display-lg text-display-lg text-on-surface">87</p>
+</div>
+<div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">radar</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-gutter mb-lg">
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-xl p-md custom-shadow border border-surface-container-high flex flex-col min-h-[400px]">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Anomaly Detection Matrix</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Actual sales volume vs. predictive model thresholds (Nexon EV Segment)</p>
+</div>
+<button class="text-primary font-label-sm text-label-sm hover:underline flex items-center gap-1">
+                            Export Data <span class="material-symbols-outlined text-sm">download</span>
+</button>
+</div>
+<div class="flex-1 relative border-l border-b border-surface-container-high pb-4 pl-4 mt-4">
+<div class="absolute bottom-0 left-4 right-0 h-full flex items-end justify-between px-4 pb-2">
+<div class="w-8 bg-primary-fixed-dim h-[30%] rounded-t-sm relative group"></div>
+<div class="w-8 bg-primary-fixed-dim h-[45%] rounded-t-sm relative group"></div>
+<div class="w-8 bg-primary-fixed-dim h-[40%] rounded-t-sm relative group"></div>
+<div class="w-8 bg-primary-fixed-dim h-[60%] rounded-t-sm relative group"></div>
+<div class="w-8 bg-primary-fixed-dim h-[55%] rounded-t-sm relative group"></div>
+<div class="w-8 bg-error-container border border-error h-[85%] rounded-t-sm relative group flex justify-center">
+<div class="absolute -top-3 w-3 h-3 bg-error rounded-full ring-4 ring-error/20 animate-pulse"></div>
+<div class="absolute -top-12 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface font-label-sm text-label-sm py-1 px-2 rounded whitespace-nowrap z-10 pointer-events-none">
+                                    Deviation: +28% (Critical)
+                                </div>
+</div>
+<div class="w-8 bg-primary-fixed-dim h-[65%] rounded-t-sm relative group"></div>
+<div class="w-8 bg-primary-fixed-dim h-[70%] rounded-t-sm relative group"></div>
+<div class="w-8 bg-tertiary-fixed h-[40%] border border-tertiary rounded-t-sm relative group flex justify-center">
+<div class="absolute -top-3 w-3 h-3 bg-tertiary rounded-full ring-4 ring-tertiary/20"></div>
+</div>
+<div class="w-8 bg-primary-fixed-dim h-[75%] rounded-t-sm relative group"></div>
+</div>
+<svg class="absolute inset-0 h-full w-full pointer-events-none" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M 0 70 Q 20 60, 40 50 T 60 10 T 80 40 T 100 20" fill="none" stroke="rgba(0, 83, 158, 0.4)" stroke-dasharray="4 4" stroke-width="1.5"></path>
+</svg>
+</div>
+<div class="flex justify-between px-8 mt-2 font-label-sm text-label-sm text-on-surface-variant">
+<span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span class="text-error font-bold">Jun</span><span>Jul</span><span>Aug</span><span class="text-tertiary font-bold">Sep</span><span>Oct</span>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-4 bg-surface-container-lowest rounded-xl p-0 custom-shadow border border-surface-container-high overflow-hidden flex flex-col">
+<div class="p-md border-b border-surface-container-high bg-surface-bright flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Active Risk Signals</h3>
+<span class="material-symbols-outlined text-on-surface-variant">filter_list</span>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-3">
+<div class="p-4 rounded-lg border border-error-container bg-[#fffbfa] hover:bg-error-container/20 transition-colors cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-label-sm text-label-sm font-bold text-error uppercase tracking-wide">Critical</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">2h ago</span>
+</div>
+<h4 class="font-body-lg text-body-lg font-semibold text-on-surface mb-1">Competitor Price Cut Detected</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-3">Major competitor reduced EV pricing by 8% in Southern region.</p>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-surface-container-high text-on-surface font-label-sm text-label-sm rounded">Impact: High</span>
+<span class="px-2 py-1 bg-surface-container-high text-on-surface font-label-sm text-label-sm rounded">Segment: EV</span>
+</div>
+</div>
+<div class="p-4 rounded-lg border border-tertiary-fixed bg-[#fffcf9] hover:bg-tertiary-fixed/40 transition-colors cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-label-sm text-label-sm font-bold text-tertiary uppercase tracking-wide">Warning</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">5h ago</span>
+</div>
+<h4 class="font-body-lg text-body-lg font-semibold text-on-surface mb-1">Supply Disruption Risk</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-3">Logistics delay flagged at Pune facility affecting Harrier production line.</p>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-surface-container-high text-on-surface font-label-sm text-label-sm rounded">Model: Harrier</span>
+</div>
+</div>
+<div class="p-4 rounded-lg border border-outline-variant bg-surface hover:bg-surface-container transition-colors cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm font-bold text-secondary uppercase tracking-wide">Watch</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">1d ago</span>
+</div>
+<h4 class="font-body-lg text-body-lg font-semibold text-on-surface mb-1">Micro-market Sentiment Drop</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-3">Slight dip in brand search volume in Tier-2 northern cities.</p>
+</div>
+</div>
+<div class="p-3 border-t border-surface-container-high bg-surface-bright text-center">
+<button class="text-primary font-label-sm text-label-sm font-semibold hover:underline">View All Signals</button>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-md custom-shadow border border-surface-container-high">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">speed</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Predictive Model Confidence</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Global R² Score</span>
+<span class="font-data-point text-data-point text-primary">0.94</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 94%"></div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-2 text-right">Excellent Fit</p>
+</div>
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">MAPE (Mean Absolute Percentage Error)</span>
+<span class="font-data-point text-data-point text-secondary">4.2%</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-2">
+<div class="bg-secondary h-2 rounded-full" style="width: 15%"></div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-2 text-right">High Accuracy</p>
+</div>
+<div class="flex items-center gap-4 bg-surface-bright p-4 rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-green-600 text-3xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<p class="font-body-md text-body-md font-semibold text-on-surface">System Optimal</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Models running at target confidence. No recalibration required.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tata Motors — Sales Intelligence Platform</title>
+<meta name="description" content="ML-powered automotive intelligence, sales forecasting, and business analytics for Tata Motors across 7 global markets."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#003c75',
+        'primary-container': '#00539e',
+        'primary-fixed': '#d5e3ff',
+        'on-surface': '#191c1e',
+        'on-surface-variant': '#424751',
+        outline: '#727782',
+        'outline-variant': '#c2c6d3',
+        surface: '#f7f9fb',
+        'surface-container': '#eceef0',
+        'surface-container-low': '#f2f4f6',
+        'surface-container-lowest': '#ffffff',
+        'surface-variant': '#e0e3e5',
+      },
+      fontFamily: { inter: ['Inter', 'sans-serif'] },
+      spacing: { sidebar: '260px', gutter: '24px' },
+    },
+  },
+}
+</script>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body class="bg-surface text-on-surface font-inter antialiased">
+
+<!-- ═══════ SIDEBAR ═══════ -->
+<aside id="sidebar" class="fixed left-0 top-0 h-full w-[260px] border-r border-slate-100 bg-white flex flex-col py-6 z-50 transition-transform">
+  <div class="px-6 mb-8">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center">
+        <span class="material-symbols-outlined text-white" style="font-variation-settings:'FILL' 1">directions_car</span>
+      </div>
+      <div>
+        <h1 class="text-lg font-black text-blue-900 leading-tight">Sales Intel</h1>
+        <p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Enterprise Edition</p>
+      </div>
+    </div>
+  </div>
+
+  <nav class="flex-1 space-y-0.5" id="sidebarNav">
+    <a class="nav-link active" data-section="overview" href="#">
+      <span class="material-symbols-outlined">dashboard</span><span>Dashboard</span>
+    </a>
+    <a class="nav-link" data-section="filters" href="#">
+      <span class="material-symbols-outlined">tune</span><span>Filters</span>
+    </a>
+    <a class="nav-link" data-section="segments" href="#">
+      <span class="material-symbols-outlined">group</span><span>Customers</span>
+    </a>
+    <a class="nav-link" data-section="models" href="#">
+      <span class="material-symbols-outlined">directions_car</span><span>Models</span>
+    </a>
+    <a class="nav-link" data-section="forecast" href="#">
+      <span class="material-symbols-outlined">trending_up</span><span>Forecast</span>
+    </a>
+    <a class="nav-link" data-section="worldmap" href="#">
+      <span class="material-symbols-outlined">public</span><span>Markets</span>
+    </a>
+    <a class="nav-link" data-section="whatif" href="#">
+      <span class="material-symbols-outlined">precision_manufacturing</span><span>Simulator</span>
+    </a>
+    <a class="nav-link" data-section="risk" href="#">
+      <span class="material-symbols-outlined">report_problem</span><span>Risks</span>
+    </a>
+  </nav>
+
+  <div class="mt-auto px-6 pt-6 border-t border-slate-50">
+    <div class="flex items-center gap-3 p-2 rounded-xl bg-slate-50">
+      <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white font-bold text-sm">RM</div>
+      <div class="overflow-hidden">
+        <p class="text-sm font-bold text-slate-900 truncate">Rohan Mehta</p>
+        <p class="text-[11px] text-slate-500 truncate">Senior Sales Director</p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ═══════ HEADER ═══════ -->
+<header class="fixed top-0 right-0 w-[calc(100%-260px)] h-16 bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-[0px_4px_20px_rgba(0,0,0,0.05)] z-40 flex justify-between items-center px-8">
+  <div class="flex items-center gap-4">
+    <span class="text-xl font-bold text-blue-800 tracking-tight">Tata Motors</span>
+    <div class="h-6 w-px bg-slate-200"></div>
+    <div class="relative">
+      <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+      <input type="text" placeholder="Search analytics..." class="pl-10 pr-4 py-1.5 bg-slate-50 border-none rounded-lg text-sm w-64 focus:ring-2 focus:ring-blue-100 outline-none"/>
+    </div>
+  </div>
+  <div class="flex items-center gap-2">
+    <div id="apiStatus" class="flex items-center gap-2 text-sm mr-4">
+      <span class="w-2 h-2 rounded-full bg-slate-300" id="statusDot"></span>
+      <span id="apiStatusText" class="text-slate-500">Connecting…</span>
+    </div>
+    <button class="p-2 text-slate-500 hover:bg-slate-50 rounded-lg"><span class="material-symbols-outlined">notifications</span></button>
+    <button class="p-2 text-slate-500 hover:bg-slate-50 rounded-lg"><span class="material-symbols-outlined">help_outline</span></button>
+    <button class="p-2 text-slate-500 hover:bg-slate-50 rounded-lg"><span class="material-symbols-outlined">settings</span></button>
+  </div>
+</header>
+
+<!-- ═══════ MAIN CONTENT ═══════ -->
+<main class="ml-[260px] pt-16 min-h-screen">
+
+  <!-- ── OVERVIEW ── -->
+  <section id="sec-overview" class="page-section active p-8">
+    <div class="flex justify-between items-end mb-8">
+      <div>
+        <h2 class="text-2xl font-semibold tracking-tight">Overview Dashboard</h2>
+        <p class="text-on-surface-variant text-sm mt-1">Real-time performance metrics and sales intelligence.</p>
+      </div>
+      <div class="flex gap-3">
+        <button class="px-4 py-2 bg-white border border-slate-200 text-primary font-medium rounded-xl hover:bg-slate-50 flex items-center gap-2 text-sm shadow-sm" onclick="exportPDF()">
+          <span class="material-symbols-outlined text-sm">download</span>Export Report
+        </button>
+      </div>
+    </div>
+
+    <!-- KPI Row -->
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-gutter mb-8" id="kpiRow">
+      <div class="kpi-card">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-10 h-10 bg-blue-50 text-blue-700 rounded-lg flex items-center justify-center"><span class="material-symbols-outlined">payments</span></div>
+          <span class="kpi-badge positive flex items-center gap-1" id="kpiRevBadge"><span class="material-symbols-outlined text-xs">trending_up</span>+12%</span>
+        </div>
+        <p class="kpi-label">Total Revenue</p>
+        <h3 class="kpi-value" id="kpiRevenue">—</h3>
+      </div>
+      <div class="kpi-card">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-10 h-10 bg-blue-50 text-blue-700 rounded-lg flex items-center justify-center"><span class="material-symbols-outlined">account_balance_wallet</span></div>
+          <span class="kpi-badge positive flex items-center gap-1" id="kpiProfBadge"><span class="material-symbols-outlined text-xs">trending_up</span>+8.4%</span>
+        </div>
+        <p class="kpi-label">Total Profit</p>
+        <h3 class="kpi-value" id="kpiProfit">—</h3>
+      </div>
+      <div class="kpi-card">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-10 h-10 bg-blue-50 text-blue-700 rounded-lg flex items-center justify-center"><span class="material-symbols-outlined">directions_car</span></div>
+          <span class="kpi-badge neutral flex items-center gap-1"><span class="material-symbols-outlined text-xs">trending_flat</span>Stable</span>
+        </div>
+        <p class="kpi-label">Units Sold</p>
+        <h3 class="kpi-value" id="kpiUnits">—</h3>
+      </div>
+      <div class="kpi-card">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-10 h-10 bg-blue-50 text-blue-700 rounded-lg flex items-center justify-center"><span class="material-symbols-outlined">analytics</span></div>
+          <span class="kpi-badge negative flex items-center gap-1" id="kpiMarginBadge"><span class="material-symbols-outlined text-xs">trending_down</span>-1.2%</span>
+        </div>
+        <p class="kpi-label">Avg Margin</p>
+        <h3 class="kpi-value" id="kpiMargin">—</h3>
+      </div>
+      <div class="kpi-card-accent">
+        <div class="relative z-10">
+          <p class="text-[10px] font-bold text-blue-300 uppercase tracking-widest mb-4">Forecast 2025</p>
+          <h3 class="text-2xl font-semibold text-white" id="kpiForecast">—</h3>
+          <p class="text-[11px] text-blue-200 mt-2 flex items-center gap-1">
+            <span class="material-symbols-outlined text-xs">auto_awesome</span>AI Predicted
+          </p>
+        </div>
+        <div class="absolute bottom-0 right-0 w-32 h-32 bg-blue-800 rounded-full -mr-16 -mb-16 opacity-50"></div>
+      </div>
+    </div>
+
+    <!-- Charts Grid -->
+    <div class="grid grid-cols-12 gap-gutter">
+      <div class="col-span-12 lg:col-span-8 card">
+        <div class="flex justify-between items-center mb-6">
+          <div>
+            <h3 class="text-lg font-semibold">Revenue & Profit Trends</h3>
+            <p class="text-on-surface-variant text-xs">Decade Performance (2014–2024)</p>
+          </div>
+        </div>
+        <div class="h-[320px]"><canvas id="chartRevProfit"></canvas></div>
+      </div>
+      <div class="col-span-12 lg:col-span-4 card">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-lg font-semibold">Top Markets</h3>
+        </div>
+        <div id="topMarketsBar"></div>
+      </div>
+      <div class="col-span-12 lg:col-span-4 card">
+        <h3 class="text-lg font-semibold mb-6">Market Distribution</h3>
+        <div class="h-[250px]"><canvas id="chartMarketDist"></canvas></div>
+      </div>
+      <div class="col-span-12 lg:col-span-8 card">
+        <h3 class="text-lg font-semibold mb-6">Fuel Type Portfolio</h3>
+        <div class="grid grid-cols-3 gap-4 mb-6" id="fuelStats"></div>
+        <div class="h-3 w-full bg-slate-100 rounded-full flex overflow-hidden" id="fuelBar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FILTERS ── -->
+  <section id="sec-filters" class="page-section p-8 hidden">
+    <h2 class="text-2xl font-semibold mb-2">Data Analytics Filters</h2>
+    <p class="text-on-surface-variant text-sm mb-8">Filter and segment sales data across all dimensions.</p>
+    <div class="grid grid-cols-12 gap-gutter">
+      <div class="col-span-12 lg:col-span-3 card">
+        <h3 class="text-lg font-semibold mb-4">Filters</h3>
+        <div class="space-y-4">
+          <div>
+            <label class="text-xs font-medium text-slate-500 uppercase tracking-wider block mb-2">Country</label>
+            <select id="filterCountry" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-100">
+              <option value="all">All Countries</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-medium text-slate-500 uppercase tracking-wider block mb-2">Fuel Type</label>
+            <select id="filterFuel" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm">
+              <option value="all">All Types</option>
+              <option>Electric</option><option>Hybrid</option><option>Petrol</option><option>Diesel</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-medium text-slate-500 uppercase tracking-wider block mb-2">Year Range</label>
+            <div class="flex gap-2">
+              <input type="number" id="filterYearFrom" value="2014" min="2014" max="2024" class="w-1/2 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm"/>
+              <input type="number" id="filterYearTo" value="2024" min="2014" max="2024" class="w-1/2 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm"/>
+            </div>
+          </div>
+          <button id="applyFilters" class="w-full px-4 py-2.5 bg-primary text-white font-medium rounded-xl text-sm shadow-md hover:opacity-90">Apply Filters</button>
+        </div>
+      </div>
+      <div class="col-span-12 lg:col-span-9">
+        <div class="card mb-gutter">
+          <h3 class="text-lg font-semibold mb-4">Filtered Revenue Trend</h3>
+          <div class="h-[300px]"><canvas id="chartFilteredRev"></canvas></div>
+        </div>
+        <div class="card">
+          <h3 class="text-lg font-semibold mb-4">Filtered Data Table</h3>
+          <div class="overflow-x-auto"><table class="data-table w-full" id="filteredTable"><thead></thead><tbody></tbody></table></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CUSTOMER SEGMENTS ── -->
+  <section id="sec-segments" class="page-section p-8 hidden">
+    <h2 class="text-2xl font-semibold mb-2">Customer Segments</h2>
+    <p class="text-on-surface-variant text-sm mb-8">Behavioral and demographic breakdowns across segments.</p>
+    <div class="grid grid-cols-12 gap-gutter">
+      <div class="col-span-12 lg:col-span-8 card">
+        <h3 class="text-lg font-semibold mb-4">Segment Revenue Breakdown</h3>
+        <div class="h-[350px]"><canvas id="chartSegments"></canvas></div>
+      </div>
+      <div class="col-span-12 lg:col-span-4 card">
+        <h3 class="text-lg font-semibold mb-4">Segment Mix</h3>
+        <div class="h-[250px]"><canvas id="chartSegDonut"></canvas></div>
+        <div class="space-y-3 mt-4" id="segLegend"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CAR MODELS ── -->
+  <section id="sec-models" class="page-section p-8 hidden">
+    <h2 class="text-2xl font-semibold mb-2">Car Models</h2>
+    <p class="text-on-surface-variant text-sm mb-8">Full portfolio analysis across 50 Tata vehicle models.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter" id="modelGrid"></div>
+  </section>
+
+  <!-- ── SALES FORECAST ── -->
+  <section id="sec-forecast" class="page-section p-8 hidden">
+    <div class="flex justify-between items-end mb-8">
+      <div>
+        <h2 class="text-2xl font-semibold">Sales Forecast Studio</h2>
+        <p class="text-on-surface-variant text-sm mt-1">ML-powered revenue & volume projections.</p>
+      </div>
+      <div class="flex gap-3 items-center">
+        <select id="fcCountry" class="px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm">
+          <option value="India">India</option>
+        </select>
+        <div class="flex bg-slate-100 p-1 rounded-lg" id="fcTimeToggle">
+          <button class="tt-btn px-3 py-1 text-xs font-bold rounded-md" data-years="10">10Y</button>
+          <button class="tt-btn active px-3 py-1 text-xs font-bold rounded-md" data-years="5">5Y</button>
+          <button class="tt-btn px-3 py-1 text-xs font-bold rounded-md" data-years="2">2Y</button>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-3 gap-gutter mb-8">
+      <div class="kpi-card"><p class="kpi-label">Forecast Revenue (2025)</p><h3 class="kpi-value" id="fcRev2025">—</h3></div>
+      <div class="kpi-card"><p class="kpi-label">Peak Revenue</p><h3 class="kpi-value" id="fcRevPeak">—</h3></div>
+      <div class="kpi-card"><p class="kpi-label">CAGR</p><h3 class="kpi-value" id="fcCAGR">—</h3></div>
+    </div>
+    <div class="grid grid-cols-12 gap-gutter">
+      <div class="col-span-12 lg:col-span-7 card">
+        <h3 class="text-lg font-semibold mb-4">Revenue Forecast</h3>
+        <div class="h-[350px]"><canvas id="chartForecastRev"></canvas></div>
+      </div>
+      <div class="col-span-12 lg:col-span-5 card">
+        <h3 class="text-lg font-semibold mb-4">Profit Forecast</h3>
+        <div class="h-[350px]"><canvas id="chartForecastProfit"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WORLD MAP ── -->
+  <section id="sec-worldmap" class="page-section p-8 hidden">
+    <h2 class="text-2xl font-semibold mb-2">Market Intelligence</h2>
+    <p class="text-on-surface-variant text-sm mb-8">Global revenue distribution across 7 markets.</p>
+    <div class="grid grid-cols-12 gap-gutter">
+      <div class="col-span-12 lg:col-span-8 card">
+        <h3 class="text-lg font-semibold mb-4">Revenue by Country</h3>
+        <div class="h-[400px]"><canvas id="chartWorldBar"></canvas></div>
+      </div>
+      <div class="col-span-12 lg:col-span-4 card">
+        <h3 class="text-lg font-semibold mb-4">Market Share</h3>
+        <div class="h-[250px]"><canvas id="chartWorldDonut"></canvas></div>
+        <div class="space-y-3 mt-4" id="worldLegend"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHAT-IF SIMULATOR ── -->
+  <section id="sec-whatif" class="page-section p-8 hidden">
+    <div class="flex justify-between items-end mb-8">
+      <div>
+        <h2 class="text-2xl font-semibold">Scenario Simulator</h2>
+        <p class="text-on-surface-variant text-sm mt-1">Adjust strategic variables to forecast revenue impact.</p>
+      </div>
+      <div class="flex gap-3">
+        <button onclick="resetWhatIf()" class="px-4 py-2 border border-slate-200 text-primary font-medium rounded-xl text-sm flex items-center gap-2 hover:bg-slate-50">
+          <span class="material-symbols-outlined text-sm">restart_alt</span>Reset
+        </button>
+        <button onclick="runWhatIf()" class="px-4 py-2 bg-primary text-white font-medium rounded-xl text-sm flex items-center gap-2 shadow-md hover:opacity-90">
+          <span class="material-symbols-outlined text-sm">play_arrow</span>Run Simulation
+        </button>
+        <button class="px-4 py-2 border border-slate-200 text-slate-600 font-medium rounded-xl text-sm flex items-center gap-2 hover:bg-slate-50">
+          <span class="material-symbols-outlined text-sm">bookmark</span>Save Scenario
+        </button>
+      </div>
+    </div>
+    <div class="grid grid-cols-12 gap-gutter">
+      <!-- Controls -->
+      <div class="col-span-12 lg:col-span-4 card">
+        <div class="flex items-center gap-2 border-b border-slate-100 pb-4 mb-6">
+          <span class="material-symbols-outlined text-primary">tune</span>
+          <h3 class="text-lg font-semibold">Input Parameters</h3>
+        </div>
+        <div class="space-y-6">
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-xs font-medium text-slate-600 flex items-center gap-1">Cost Ratio (Δ%)<span class="material-symbols-outlined text-slate-400 text-sm cursor-help" title="% change in manufacturing cost ratio">info</span></label>
+              <span class="text-sm font-semibold text-primary bg-blue-50 px-2 py-0.5 rounded" id="wiCostVal">0%</span>
+            </div>
+            <input type="range" id="wiCost" min="-50" max="50" value="0" step="1" class="wi-slider"/>
+            <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>-50%</span><span>0</span><span>+50%</span></div>
+          </div>
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-xs font-medium text-slate-600 flex items-center gap-1">Marketing Spend (Δ%)<span class="material-symbols-outlined text-slate-400 text-sm cursor-help" title="% change in marketing expenditure">info</span></label>
+              <span class="text-sm font-semibold text-primary bg-blue-50 px-2 py-0.5 rounded" id="wiMktVal">0%</span>
+            </div>
+            <input type="range" id="wiMkt" min="-50" max="50" value="0" step="1" class="wi-slider"/>
+            <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>-50%</span><span>Baseline</span><span>+50%</span></div>
+          </div>
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-xs font-medium text-slate-600 flex items-center gap-1">R&D Investment (Δ%)<span class="material-symbols-outlined text-slate-400 text-sm cursor-help" title="% change in R&D spend">info</span></label>
+              <span class="text-sm font-semibold text-primary bg-blue-50 px-2 py-0.5 rounded" id="wiRndVal">0%</span>
+            </div>
+            <input type="range" id="wiRnd" min="-50" max="50" value="0" step="1" class="wi-slider"/>
+            <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>-50%</span><span>Baseline</span><span>+50%</span></div>
+          </div>
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-xs font-medium text-slate-600 flex items-center gap-1">Units Sold (Δ%)<span class="material-symbols-outlined text-slate-400 text-sm cursor-help" title="% change in units sold volume">info</span></label>
+              <span class="text-sm font-semibold text-primary bg-blue-50 px-2 py-0.5 rounded" id="wiUnitsVal">0%</span>
+            </div>
+            <input type="range" id="wiUnits" min="-50" max="50" value="0" step="1" class="wi-slider"/>
+            <div class="flex justify-between text-[10px] text-slate-400 mt-1"><span>-50%</span><span>Baseline</span><span>+50%</span></div>
+          </div>
+        </div>
+      </div>
+      <!-- Results -->
+      <div class="col-span-12 lg:col-span-8 flex flex-col gap-gutter">
+        <div class="grid grid-cols-3 gap-4">
+          <div class="kpi-card"><p class="kpi-label">Baseline Revenue</p><h3 class="kpi-value" id="wiBaseline">—</h3></div>
+          <div class="kpi-card border-primary border-2"><p class="kpi-label text-primary font-bold">Simulated Revenue</p><h3 class="kpi-value text-primary" id="wiSimulated">—</h3></div>
+          <div class="kpi-card-accent"><p class="text-xs text-blue-300 font-bold">Net Impact</p><h3 class="text-3xl font-bold text-white mt-2" id="wiDelta">—</h3><p class="text-xs text-blue-200 mt-1" id="wiDeltaPct">—</p></div>
+        </div>
+        <div class="card flex-1">
+          <h3 class="text-lg font-semibold mb-4">Revenue Trajectory</h3>
+          <div class="h-[300px]"><canvas id="chartWhatIf"></canvas></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RISK DASHBOARD ── -->
+  <section id="sec-risk" class="page-section p-8 hidden">
+    <h2 class="text-2xl font-semibold mb-2">Risk & Threat Dashboard</h2>
+    <p class="text-on-surface-variant text-sm mb-8">Strategic risk assessment across Tata's global operations.</p>
+    <div class="grid grid-cols-12 gap-gutter" id="riskGrid"></div>
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

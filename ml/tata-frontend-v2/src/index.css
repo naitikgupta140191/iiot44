@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+/* ─── Stitch Design System: Tata Motors Automotive Intelligence ─── */
+@theme {
+  /* Color Palette — Light Corporate */
+  --color-surface: #f7f9fb;
+  --color-surface-dim: #d8dadc;
+  --color-surface-bright: #f7f9fb;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f2f4f6;
+  --color-surface-container: #eceef0;
+  --color-surface-container-high: #e6e8ea;
+  --color-surface-container-highest: #e0e3e5;
+  --color-on-surface: #191c1e;
+  --color-on-surface-variant: #424751;
+  --color-inverse-surface: #2d3133;
+  --color-inverse-on-surface: #eff1f3;
+  --color-outline: #727782;
+  --color-outline-variant: #c2c6d3;
+  --color-surface-tint: #1b5faa;
+
+  --color-primary: #003c75;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #00539e;
+  --color-on-primary-container: #a8c9ff;
+  --color-inverse-primary: #a7c8ff;
+
+  --color-secondary: #505f76;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #d0e1fb;
+  --color-on-secondary-container: #54647a;
+
+  --color-tertiary: #343c51;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #4b5369;
+  --color-on-tertiary-container: #bfc7e1;
+
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  --color-success: #059669;
+  --color-success-container: #d1fae5;
+  --color-warning: #d97706;
+  --color-warning-container: #fef3c7;
+  --color-info: #1d4ed8;
+  --color-info-container: #dbeafe;
+
+  --color-primary-fixed: #d5e3ff;
+  --color-primary-fixed-dim: #a7c8ff;
+  --color-secondary-fixed: #d3e4fe;
+  --color-secondary-fixed-dim: #b7c8e1;
+  --color-tertiary-fixed: #dae2fd;
+  --color-tertiary-fixed-dim: #bec6e0;
+
+  /* Spacing */
+  --spacing-unit: 4px;
+  --spacing-sidebar: 280px;
+  --spacing-topnav: 64px;
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-DEFAULT: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-card: 24px;
+  --radius-full: 9999px;
+
+  /* Fonts */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ─── Base Styles ─── */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Utility Classes ─── */
+.high-depth-shadow {
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.04);
+}
+
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.07);
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-outline-variant);
+  border-radius: 3px;
+}
+
+/* ─── Animations ─── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out both;
+}
+
+/* Stagger children */
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+
+/* ─── Recharts Overrides ─── */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: var(--color-surface-container);
+}
+.recharts-text {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  fill: var(--color-outline);
+}
