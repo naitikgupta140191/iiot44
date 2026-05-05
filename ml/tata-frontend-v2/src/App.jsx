@@ -11,7 +11,7 @@ import Risk from './pages/Risk';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/iiot44">
       <Routes>
         <Route element={<PageShell />}>
           <Route path="/" element={<Overview />} />
